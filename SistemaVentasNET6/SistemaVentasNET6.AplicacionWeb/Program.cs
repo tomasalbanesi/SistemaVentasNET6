@@ -1,7 +1,12 @@
+using SistemaVentasNET6.IOC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Inyeccion de dependencias
+builder.Services.InyectarDependencia(builder.Configuration);
 
 var app = builder.Build();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaVentasNET6.DAL.EntityConfig
 {
-    internal class CategoryConfig
+    internal class ConfiguracionConfig
     {
     }
 }

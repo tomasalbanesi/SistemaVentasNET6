@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaVentasNET6.Entity
+namespace SistemaVentasNET6.DAL.EntityConfig
 {
-    public class Category
+    internal class TipoDocumentoVentaConfig
     {
     }
 }
