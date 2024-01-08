@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SistemaVentasNET6.Entity;
+using System.Reflection;
 
 namespace SistemaVentasNET6.DAL.Context
 {
@@ -12,47 +13,7 @@ namespace SistemaVentasNET6.DAL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly();
-            // Configura las relaciones adicionales aquí
-            modelBuilder.Entity<RolMenu>()
-                .HasOne(rm => rm.Rol)
-                .WithMany(r => r.RolesMenus)
-                .HasForeignKey(rm => rm.IdRol);
-
-            modelBuilder.Entity<RolMenu>()
-                .HasOne(rm => rm.Menu)
-                .WithMany(m => m.RolesMenus)
-                .HasForeignKey(rm => rm.IdMenu);
-
-            modelBuilder.Entity<Usuario>()
-                .HasOne(u => u.Rol)
-                .WithMany(r => r.Usuarios)
-                .HasForeignKey(u => u.IdRol);
-
-            modelBuilder.Entity<Producto>()
-                .HasOne(p => p.Categoria)
-                .WithMany(c => c.Productos)
-                .HasForeignKey(p => p.IdCategoria);
-
-            modelBuilder.Entity<Venta>()
-                .HasOne(v => v.Usuario)
-                .WithMany(u => u.Ventas)
-                .HasForeignKey(v => v.IdUsuario);
-
-            modelBuilder.Entity<Venta>()
-                .HasOne(v => v.TipoDocumentoVenta)
-                .WithMany(td => td.Ventas)
-                .HasForeignKey(v => v.IdTipoDocumentoVenta);
-
-            modelBuilder.Entity<DetalleVenta>()
-                .HasOne(dv => dv.Venta)
-                .WithMany(v => v.DetallesVentas)
-                .HasForeignKey(dv => dv.IdVenta);
-
-            modelBuilder.Entity<DetalleVenta>()
-                .HasOne(dv => dv.Producto)
-                .WithMany(p => p.DetallesVentas)
-                .HasForeignKey(dv => dv.IdProducto);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());            
         }
 
         public DbSet<Menu> Menus { get; set; }
